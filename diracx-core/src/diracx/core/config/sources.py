@@ -122,7 +122,7 @@ class ConfigSource(metaclass=ABCMeta):
         url = TypeAdapter(ConfigSourceUrl).validate_python(str(backend_url))
         return cls.__registry[url.scheme](backend_url=url)
 
-    def read_config(self) -> Config:
+    def read(self) -> Config:
         """Load the configuration from the backend with appropriate caching.
 
         :raises: diracx.core.exceptions.NotReadyError if the config is being loaded still
@@ -133,7 +133,7 @@ class ConfigSource(metaclass=ABCMeta):
         )
         return self._content_cache[hexsha]
 
-    async def read_config_non_blocking(self) -> Config:
+    async def read_non_blocking(self) -> Config:
         """Load the configuration from the backend with appropriate caching.
 
         :raises: diracx.core.exceptions.NotReadyError if the config is being loaded still
