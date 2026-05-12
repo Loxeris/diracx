@@ -8,8 +8,6 @@ from .sources import (
     ConfigSourceUrl,
     LocalGitConfigSource,
     RemoteGitConfigSource,
-    ResourceStatusSource,
-    is_running_in_async_context,
 )
 
 __all__ = (
@@ -18,6 +16,4 @@ __all__ = (
     "ConfigSourceUrl",
     "LocalGitConfigSource",
     "RemoteGitConfigSource",
-    "ResourceStatusSource",
-    "is_running_in_async_context",
 )
