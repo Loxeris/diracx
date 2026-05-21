@@ -25,6 +25,7 @@ from uuid_utils import uuid7
 
 from diracx.core.extensions import DiracEntryPoint
 from diracx.core.models.auth import AccessTokenPayload, RefreshTokenPayload
+from diracx.logic.rss.source import ResourceStatusSource, SiteStatusSource
 
 if TYPE_CHECKING:
     from diracx.core.settings import (
@@ -221,8 +222,6 @@ class ClientFactory:
             all_access_policies=all_access_policies,
         )
 
-        from diracx.routers.rss import RSSSnapshotSentinels
-
         self.all_dependency_overrides = self.app.dependency_overrides.copy()
         self.app.dependency_overrides = {}
         for obj in self.all_dependency_overrides:
@@ -234,7 +233,8 @@ class ClientFactory:
                     BaseOSDB,
                     ConfigSource,
                     BaseAccessPolicy,
-                    RSSSnapshotSentinels,
+                    ResourceStatusSource,
+                    SiteStatusSource,
                 ),
             ), obj
 
